@@ -43,14 +43,15 @@ public class Server extends Application {
           socket.getOutputStream());
 
         while (true) {
-          // Receive radius from the client
+          // Receive number from the client
           int num = inputFromClient.readInt();
 
-          // Compute area
+          // Compute if number is prime or not
           String prime = isPrime(num);
 
-          // Send area back to the client
-          outputToClient.write(num);
+          // Send if prime answer back to client
+          outputToClient.writeUTF(prime);
+          
 
           Platform.runLater(() -> {
             ta.appendText("Number received from client: "
@@ -68,7 +69,7 @@ public class Server extends Application {
   private static String isPrime(int num) {
 	  if(num<2) {
           return "No";
-      }else {
+      }
       int i=2;
       while(i<num) {
           if(num%i==0) {
@@ -78,7 +79,6 @@ public class Server extends Application {
       }
       return "Yes";      
   }
-  }
   /**
    * The main method is only needed for the IDE with limited
    * JavaFX support. Not needed for running from the command line.
@@ -87,6 +87,9 @@ public class Server extends Application {
     launch(args);
   }
 }
+
+
+
 
 
 
