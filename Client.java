@@ -50,11 +50,11 @@ public class Client extends Application {
         // Get the number from the text field
         int num = Integer.parseInt(tf.getText().trim());
 
-        // Send the radius to the server
+        // Send the number entered to the server
         toServer.writeInt(num);
         toServer.flush();
 
-        // Get area from the server
+        // Get if prime from the server
         String prime = fromServer.readUTF();
 
         // Display to the text area
